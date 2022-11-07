@@ -12,6 +12,7 @@ import com.educacionit.digitalers.entidades.Usuario;
 import com.educacionit.digitalers.interfaces.ServicioGenerico;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
@@ -24,6 +25,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path(value = "/usuarios")
+//@Produces(value = MediaType.APPLICATION_JSON)
 public class UsuarioServicio implements ServicioGenerico<Usuario, Integer> {
 	private static Logger logger = LogManager.getLogger();
 
@@ -61,16 +63,20 @@ public class UsuarioServicio implements ServicioGenerico<Usuario, Integer> {
 	}
 
 	@PUT
-	@Path(value = "modificar")
+	@Path(value = "/modificar")
 	@Produces(value = MediaType.APPLICATION_JSON)
 	@Consumes(value = MediaType.APPLICATION_JSON)
 	public Response modificar(Usuario usuario) {
 		logger.debug(usuario);
 		return Response.accepted(usuario).build();
 	}
-
-	public Response eliminar(Usuario v) {
-		return null;
+	@DELETE
+	@Path(value = "/eliminar")
+	@Produces(value = MediaType.APPLICATION_JSON)
+	@Consumes(value = MediaType.APPLICATION_JSON)
+	public Response eliminar(Usuario usuario) {
+		logger.debug(usuario);
+		return Response.accepted(usuario).build();
 	}
 
 	@GET
